@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة لرحاب ❤️</title>
+    <style>
+        /* (CSS Styles remain the same) */
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #fce4ec; color: #4a148c; text-align: center; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .page { width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box; }
+        #password-page { background: #fff; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        input[type="text"] { padding: 10px; margin: 15px 0; border: 2px solid #e91e63; border-radius: 8px; width: 80%; }
+        button { background-color: #e91e63; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s; }
+        button:hover { background-color: #c2185b; }
+        #surprise-page { display: none; }
+        h1 { color: #d81b60; margin-bottom: 5px; }
+        .message-box { background: #ffcdd2; padding: 20px; border-radius: 10px; margin-top: 20px; font-size: 1.2em; line-height: 1.6; white-space: pre-line; }
+        .memory-image { width: 100%; max-width: 400px; height: auto; border-radius: 10px; margin: 20px auto; border: 4px solid #f06292; box-shadow: 0 0 15px rgba(233, 30, 99, 0.5); }
+        .heart { position: absolute; color: #ff007f; font-size: 20px; animation: floatUp 5s infinite ease-out; opacity: 0; pointer-events: none; }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-500px) scale(0.5); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <audio id="background-music" src="https://cdn.pixabay.com/download/audio/2023/12/28/background-music-200770.mp3" loop autoplay muted></audio>
+
+    <div id="password-page" class="page">
+        <h2>عشان تشوفي المفاجأة، لازم تكتبي كلمة السر!</h2>
+        <input type="text" id="password" placeholder="أكتبي كلمة السر بتاعتنا..." required>
+        <button onclick="checkPassword()">ادخلي قلبي</button>
+    </div>
+
+    <div id="surprise-page" class="page">
+        <h1>❤️❤️ أحلى مفاجأة لأجمل إنسانة في حياتي ❤️❤️</h1>
+        
+        <button onclick="playMusic()" id="play-music-btn" style="margin-bottom: 20px;">
+            🎶 دوسي هنا لو الأغنية مشتغلتش
+        </button>
+        
+        <div class="message-box">
+            <p>من أول يوم عرفتك وأنا حاسس إن حياتي بقت أحلى. ضحكتك بتخليني أنسى أي هم، وكلامك بيديني طاقة وحب. إنتِ مش بس جزء من حياتي، إنتِ حياتي كلها. بحبك من قلبي، وهنفضل أحباب طول العمر يا أحلى رحاب! 💖</p>
+        </div>
+
+        <h3>صور بتفكرنا بأحلى الأيام!</h3>
+        
+        <img class="memory-image" src="https://i.postimg.cc/B6Gxqks6/IMG-20251116-205555.jpg" alt="صورة ذكرى 1">
+        <img class="memory-image" src="https://i.postimg.cc/sgcwx5KJ/IMG-20251116-210747.jpg" alt="صورة ذكرى 2">
+        <img class="memory-image" src="https://i.postimg.cc/J7NJRMTw/IMG-20251113-193451.jpg" alt="صورة ذكرى 3">
+        
+        <p>دي مجرد بداية لمشوارنا سوا ❤️</p>
+    </div>
+
+    <script>
+        const CORRECT_PASSWORD = "LOVERURU"; 
+        
+        // ** دالة تشغيل الموسيقى كما هي **
+        function playMusic() {
+            const music = document.getElementById('background-music');
+            music.muted = false; // لو كان Muted قبل كده
+            music.play().catch(e => console.log("مشكلة في تشغيل الأغنية التلقائي"));
+        }
+
+        function checkPassword() {
+            const music = document.getElementById('background-music');
+            const passwordInput = document.getElementById('password').value.toUpperCase(); 
+            if (passwordInput === CORRECT_PASSWORD) {
+                document.getElementById('password-page').style.display = 'none';
+                document.getElementById('surprise-page').style.display = 'block';
+                
+                // ** التعديل الثاني: عند نجاح الباسورد، بنشيل الـ mute **
+                music.muted = false; 
+                music.play().catch(e => console.log("مشكلة في تشغيل الأغنية بعد الباسورد"));
+                
+                startHeartAnimation(); 
+            } else {
+                alert('كلمة السر غلط يا عمري! ركزي تاني!');
+            }
+        }
+
+        function startHeartAnimation() {
+            const container = document.body;
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw'; 
+                heart.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000); 
+            }, 300); 
+        }
+
+    </script>
+</body>
+</html>
